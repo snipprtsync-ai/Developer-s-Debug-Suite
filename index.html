@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <!-- Primary Meta Tags -->
+  <title>Developer's Debug Suite – Free JSON, Base64, JWT & URL Tools</title>
+  <meta name="description" content="Free, fast, client-side developer utilities: JSON formatter/minifier, Base64 encoder/decoder, URL encoder, JWT debugger, and smart auto-detect. No logins. No tracking." />
+  <meta name="keywords" content="JSON formatter, Base64 encoder, JWT debugger, URL encoder, developer tools, text tools, online utilities" />
+  <meta name="author" content="Developer's Debug Suite" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://developers-debug-suite.com/" />
+  <meta property="og:title" content="Developer's Debug Suite – Free JSON, Base64, JWT & URL Tools" />
+  <meta property="og:description" content="Fast, client-side developer utilities. JSON formatter, Base64 encoder/decoder, URL encoder, JWT debugger, and more. No logins. No tracking." />
+  <meta property="og:image" content="https://developers-debug-suite.com/og-image.png" />
+  <meta property="og:site_name" content="Developer's Debug Suite" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://developers-debug-suite.com/" />
+  <meta property="twitter:title" content="Developer's Debug Suite – Free JSON, Base64, JWT & URL Tools" />
+  <meta property="twitter:description" content="Fast, client-side developer utilities. JSON formatter, Base64 encoder/decoder, URL encoder, JWT debugger, and more." />
+  <meta property="twitter:image" content="https://developers-debug-suite.com/og-image.png" />
+  
+  <!-- Canonical -->
+  <link rel="canonical" href="https://developers-debug-suite.com/" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="msapplication-TileColor" content="#0f172a" />
+  
+  <!-- Preload & Prefetch -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Developer's Debug Suite",
+    "description": "Free, fast, client-side developer utilities: JSON formatter/minifier, Base64 encoder/decoder, URL encoder, JWT debugger, and smart auto-detect.",
+    "url": "https://developers-debug-suite.com/",
+    "applicationCategory": "DeveloperApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "operatingSystem": "Web",
+    "browserRequirements": "Requires JavaScript",
+    "author": {
+      "@type": "Organization",
+      "name": "Developer's Debug Suite"
+    }
+  }
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    }
+    .scroll-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .scroll-thin::-webkit-scrollbar-thumb {
+      background-color: rgba(148, 163, 184, 0.6);
+      border-radius: 9999px;
+    }
+    .scroll-thin::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    .token-header { font-weight: 600; }
+    .fade-in {
+      animation: fade-in 0.18s ease-out;
+    }
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(2px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="h-full bg-slate-950 text-slate-100">
+  <div class="min-h-screen flex flex-col">
+    <!-- Top nav -->
+    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-lg bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center text-slate-950 font-black text-lg">{}</div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-lg font-semibold tracking-tight">Developer's Debug Suite</h1>
+              <span class="px-1.5 py-0.5 text-[10px] rounded border border-emerald-500/40 text-emerald-300 bg-emerald-500/10 uppercase tracking-wide">Beta</span>
+            </div>
+            <p class="text-xs text-slate-400">Fast, client-side text tools for developers. No logins. No tracking.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 text-[11px] sm:text-xs">
+          <span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-2 py-0.5 text-emerald-300">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            100% client-side & private
+          </span>
+          <a href="#seo" class="hidden sm:inline-flex items-center gap-1 text-slate-400 hover:text-slate-100 transition text-xs">
+            <span>SEO Playbook</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6 flex flex-col lg:flex-row gap-4 sm:gap-6">
+        <!-- Sidebar tools -->
+        <aside class="w-full lg:w-64 shrink-0">
+          <div class="rounded-xl border border-slate-800 bg-slate-900/60 shadow-lg shadow-slate-950/40 overflow-hidden">
+            <div class="px-3 py-2 border-b border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+              <span class="uppercase tracking-[0.2em]">Tools</span>
+              <span class="inline-flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>Utility belt</span>
+              </span>
+            </div>
+            <nav id="toolList" class="flex flex-col py-1 text-sm">
+              <button data-tool="smart" class="tool-tab flex items-center justify-between px-3 py-2.5 text-left hover:bg-slate-800/70 text-slate-100">
+                <span class="flex items-center gap-2">
+                  <span class="text-xs">⚡</span>
+                  <span>Smart Detect</span>
+                </span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">Auto</span>
+              </button>
+              <button data-tool="json" class="tool-tab flex items-center justify-between px-3 py-2.5 text-left hover:bg-slate-800/70 text-slate-300">
+                <span class="flex items-center gap-2">
+                  <span class="text-xs">{ }</span>
+                  <span>JSON Beautifier</span>
+                </span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-800 text-emerald-300 border border-emerald-500/40">Popular</span>
+              </button>
+              <button data-tool="base64" class="tool-tab flex items-center justify-between px-3 py-2.5 text-left hover:bg-slate-800/70 text-slate-300">
+                <span class="flex items-center gap-2">
+                  <span class="text-xs">🧬</span>
+                  <span>Base64 Encode / Decode</span>
+                </span>
+              </button>
+              <button data-tool="url" class="tool-tab flex items-center justify-between px-3 py-2.5 text-left hover:bg-slate-800/70 text-slate-300">
+                <span class="flex items-center gap-2">
+                  <span class="text-xs">🔗</span>
+                  <span>URL Encoder</span>
+                </span>
+              </button>
+              <button data-tool="jwt" class="tool-tab flex items-center justify-between px-3 py-2.5 text-left hover:bg-slate-800/70 text-slate-300">
+                <span class="flex items-center gap-2">
+                  <span class="text-xs">🔐</span>
+                  <span>JWT Debugger</span>
+                </span>
+              </button>
+            </nav>
+          </div>
+
+          <!-- Monetization / sponsor concept -->
+          <div class="mt-4 space-y-3 text-xs text-slate-400">
+            <div class="rounded-lg border border-slate-800 bg-slate-900/70 p-3">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-semibold text-slate-100 text-[11px] tracking-wide uppercase">Sponsor Slot</span>
+                <span class="px-1.5 py-0.5 rounded-full border border-slate-700 text-[10px] text-slate-400">Carbon-ready</span>
+              </div>
+              <p class="text-[11px] leading-snug mb-2">Perfect for dev tools, infra, or hiring banners. Single, tasteful placement. No trackers.</p>
+              <button class="w-full text-[11px] py-1.5 rounded bg-slate-100 text-slate-950 font-medium hover:bg-white transition">Book this slot</button>
+            </div>
+
+            <div class="rounded-lg border border-slate-800 bg-slate-900/70 p-3">
+              <div class="font-semibold text-slate-100 text-[11px] tracking-wide uppercase mb-1">API Upsell</div>
+              <p class="text-[11px] leading-snug">Turn these utilities into a paid API (e.g., /format-json, /decode-jwt) once traffic grows.</p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main panel -->
+        <section class="flex-1 flex flex-col gap-4">
+          <!-- Input / output panel -->
+          <div class="rounded-xl border border-slate-800 bg-slate-900/70 shadow-lg shadow-slate-950/40 flex flex-col h-[460px] sm:h-[520px]">
+            <div class="px-4 py-3 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
+              <div>
+                <div id="toolTitle" class="text-sm font-medium text-slate-100">Smart Detect</div>
+                <div id="toolSubtitle" class="text-[11px] text-slate-400">Paste any text. We'll auto-detect JSON, JWT, Base64, or URL-safe strings.</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span id="detectedBadge" class="hidden items-center gap-1 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-2 py-0.5 text-[10px] text-emerald-300">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-300"></span>
+                  <span id="detectedText">Detected JSON</span>
+                </span>
+                <button id="swapIO" class="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-[11px] rounded border border-slate-700 text-slate-300 hover:bg-slate-800/80">
+                  <span>Swap I/O</span>
+                </button>
+              </div>
+            </div>
+            <div class="flex-1 grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-slate-800 min-h-0">
+              <!-- Input -->
+              <div class="flex flex-col min-h-0">
+                <div class="flex items-center justify-between px-3 py-2 text-[11px] text-slate-400 border-b border-slate-800/70">
+                  <span>Input</span>
+                  <div class="flex items-center gap-1.5">
+                    <button id="clearInput" class="px-1.5 py-0.5 rounded border border-slate-700 hover:bg-slate-800 text-[10px]">Clear</button>
+                    <label class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-700 hover:bg-slate-800 text-[10px] cursor-pointer">
+                      <span>Import file</span>
+                      <input id="fileInput" type="file" class="hidden" />
+                    </label>
+                  </div>
+                </div>
+                <textarea id="inputText" class="flex-1 bg-transparent text-xs sm:text-sm px-3 py-2 resize-none outline-none scroll-thin" spellcheck="false" placeholder='Paste JSON, JWT, Base64, or any text here. Example: {"hello":"world"} or eyJhbGciOi...'></textarea>
+              </div>
+              <!-- Output -->
+              <div class="flex flex-col min-h-0 bg-slate-950/40">
+                <div class="flex items-center justify-between px-3 py-2 text-[11px] text-slate-400 border-b border-slate-800/70">
+                  <span>Output</span>
+                  <div class="flex items-center gap-1.5">
+                    <button id="copyOutput" class="px-1.5 py-0.5 rounded border border-slate-700 hover:bg-slate-800 text-[10px]">Copy</button>
+                    <button id="downloadOutput" class="px-1.5 py-0.5 rounded border border-slate-700 hover:bg-slate-800 text-[10px]">Download</button>
+                  </div>
+                </div>
+                <pre id="outputText" class="flex-1 bg-transparent text-xs sm:text-sm px-3 py-2 overflow-auto scroll-thin whitespace-pre-wrap"></pre>
+              </div>
+            </div>
+            <div class="px-4 py-2 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400">
+              <div class="flex items-center gap-2">
+                <select id="toolAction" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-[11px] text-slate-200">
+                  <option value="auto">Auto mode</option>
+                  <option value="pretty">Beautify / format</option>
+                  <option value="minify">Minify / compact</option>
+                  <option value="encode">Encode</option>
+                  <option value="decode">Decode</option>
+                  <option value="parse">Parse only</option>
+                </select>
+                <button id="runTool" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded bg-emerald-500 text-slate-950 font-medium text-[11px] hover:bg-emerald-400 active:bg-emerald-500/90">
+                  <span>Run</span>
+                  <span class="text-xs">↵</span>
+                </button>
+                <span id="statusText" class="text-[11px] text-slate-500"></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span id="lengthInfo" class="text-[11px] text-slate-500">0 chars</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- JWT decoded detail panel -->
+          <div id="jwtPanel" class="hidden rounded-xl border border-slate-800 bg-slate-900/70 p-3 sm:p-4 text-xs text-slate-200 fade-in">
+            <div class="flex items-center justify-between mb-2">
+              <div>
+                <div class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">JWT Payload</div>
+                <div class="text-[11px] text-slate-400">Header, payload & signature decoded locally.</div>
+              </div>
+              <button id="closeJwtPanel" class="text-[11px] px-2 py-1 rounded border border-slate-700 hover:bg-slate-800 text-slate-300">Hide</button>
+            </div>
+            <div class="grid gap-2 sm:grid-cols-3">
+              <div class="rounded-lg border border-slate-800 bg-slate-950/60 p-2">
+                <div class="token-header text-[11px] text-slate-400 mb-1">Header</div>
+                <pre id="jwtHeader" class="whitespace-pre-wrap text-[11px] text-emerald-200"></pre>
+              </div>
+              <div class="rounded-lg border border-slate-800 bg-slate-950/60 p-2 sm:col-span-2">
+                <div class="token-header text-[11px] text-slate-400 mb-1">Payload</div>
+                <pre id="jwtPayload" class="whitespace-pre-wrap text-[11px] text-emerald-200"></pre>
+              </div>
+            </div>
+            <div class="mt-2 rounded-lg border border-slate-800 bg-slate-950/60 p-2 text-[10px] text-slate-400">
+              <span class="font-semibold">Note:</span> Signature is not validated. This tool only decodes the token; it does not verify authenticity.
+            </div>
+          </div>
+
+          <!-- SEO & monetization helper copy -->
+          <section id="seo" class="mt-2 sm:mt-4 text-[11px] text-slate-400 space-y-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="uppercase tracking-[0.2em] text-slate-500">SEO Angles</span>
+              <span class="px-1.5 py-0.5 rounded-full border border-slate-800 bg-slate-900/80">Fast JSON formatter</span>
+              <span class="px-1.5 py-0.5 rounded-full border border-slate-800 bg-slate-900/80">Secure Base64 decoder</span>
+              <span class="px-1.5 py-0.5 rounded-full border border-slate-800 bg-slate-900/80">Online JWT parser</span>
+            </div>
+            <p>Ideas for landing pages & meta titles you can use to attract developer traffic:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li><span class="font-semibold text-slate-200">"Fastest JSON Formatter"</span> – emphasize instant, client-side formatting.</li>
+              <li><span class="font-semibold text-slate-200">"Secure Base64 Decoder (No Uploads)"</span> – highlight the privacy angle.</li>
+              <li><span class="font-semibold text-slate-200">"JWT Debugger & Token Inspector"</span> – focus on authentication debugging.</li>
+            </ul>
+            <p>Distribute it on GitHub (open source), Product Hunt, and Dev.to. Developers love clean, bookmarkable utilities with zero friction.</p>
+          </section>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Utility helpers
+    const $ = (id) => document.getElementById(id);
+    const inputEl = $("inputText");
+    const outputEl = $("outputText");
+    const statusEl = $("statusText");
+    const lengthInfoEl = $("lengthInfo");
+    const detectedBadge = $("detectedBadge");
+    const detectedText = $("detectedText");
+    const toolTitle = $("toolTitle");
+    const toolSubtitle = $("toolSubtitle");
+    const toolAction = $("toolAction");
+    const jwtPanel = $("jwtPanel");
+    const jwtHeader = $("jwtHeader");
+    const jwtPayload = $("jwtPayload");
+
+    let currentTool = "smart"; // smart | json | base64 | url | jwt
+
+    function setStatus(msg, type = "info") {
+      statusEl.textContent = msg || "";
+      statusEl.className = "text-[11px] " + (type === "error" ? "text-rose-400" : "text-slate-500");
+    }
+
+    function setOutput(text) {
+      outputEl.textContent = text;
+    }
+
+    function updateLengthInfo() {
+      const len = inputEl.value.length;
+      const lines = inputEl.value.split(/\r?\n/).length;
+      lengthInfoEl.textContent = `${len} chars • ${lines} line${lines !== 1 ? "s" : ""}`;
+    }
+
+    function copyToClipboard(text) {
+      if (!navigator.clipboard) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); } catch (e) {}
+        document.body.removeChild(ta);
+        return;
+      }
+      navigator.clipboard.writeText(text).catch(() => {});
+    }
+
+    // Detection logic
+    function isLikelyJSON(text) {
+      const t = text.trim();
+      if (!t) return false;
+      if (!((t.startsWith("{") && t.endsWith("}")) || (t.startsWith("[") && t.endsWith("]")))) return false;
+      try { JSON.parse(t); return true; } catch { return false; }
+    }
+
+    function isLikelyJWT(text) {
+      const parts = text.trim().split(".");
+      if (parts.length !== 3) return false;
+      return parts.every(p => /^[A-Za-z0-9_-]+$/.test(p));
+    }
+
+    function isLikelyURL(text) {
+      const t = text.trim();
+      if (!t) return false;
+      if (/^https?:\/\//i.test(t)) return true;
+      if (t.includes(" ")) return false;
+      return /[/?=&]/.test(t);
+    }
+
+    function isLikelyBase64(text) {
+      const t = text.trim();
+      if (!t) return false;
+      if (!/^[A-Za-z0-9+/=\s]+$/.test(t)) return false;
+      if (t.length % 4 !== 0) return false;
+      try {
+        atob(t.replace(/\s+/g, ""));
+        return true;
+      } catch { return false; }
+    }
+
+    function autoDetect(text) {
+      if (isLikelyJWT(text)) return { type: "jwt", label: "JWT token" };
+      if (isLikelyJSON(text)) return { type: "json", label: "JSON" };
+      if (isLikelyBase64(text)) return { type: "base64", label: "Base64" };
+      if (isLikelyURL(text)) return { type: "url", label: "URL" };
+      return { type: "text", label: "Plain text" };
+    }
+
+    function updateDetectionUI() {
+      const text = inputEl.value;
+      if (!text.trim()) {
+        detectedBadge.classList.add("hidden");
+        setStatus("");
+        setOutput("");
+        updateLengthInfo();
+        return;
+      }
+      const det = autoDetect(text);
+      detectedBadge.classList.remove("hidden");
+      detectedText.textContent = `Detected ${det.label}`;
+      setStatus(`Detected ${det.label}.`);
+      updateLengthInfo();
+    }
+
+    // Tool switching
+    function setTool(tool) {
+      currentTool = tool;
+      document.querySelectorAll(".tool-tab").forEach(btn => {
+        const active = btn.dataset.tool === tool;
+        btn.classList.toggle("bg-slate-800", active);
+        btn.classList.toggle("text-slate-100", active);
+        if (!active) btn.classList.add("text-slate-300");
+      });
+
+      jwtPanel.classList.add("hidden");
+
+      switch (tool) {
+        case "smart":
+          toolTitle.textContent = "Smart Detect";
+          toolSubtitle.textContent = "Paste anything. We'll guess JSON, JWT, Base64 or URL and run the right transformation.";
+          toolAction.value = "auto";
+          break;
+        case "json":
+          toolTitle.textContent = "JSON Beautifier / Minifier";
+          toolSubtitle.textContent = "Format or minify JSON snippets using native JSON.parse/stringify.";
+          toolAction.value = "pretty";
+          break;
+        case "base64":
+          toolTitle.textContent = "Base64 Encoder / Decoder";
+          toolSubtitle.textContent = "Encode text to Base64 or decode Base64 strings locally with btoa/atob.";
+          toolAction.value = "encode";
+          break;
+        case "url":
+          toolTitle.textContent = "URL Encoder";
+          toolSubtitle.textContent = "Percent-encode query strings, paths, or arbitrary text.";
+          toolAction.value = "encode";
+          break;
+        case "jwt":
+          toolTitle.textContent = "JWT Debugger";
+          toolSubtitle.textContent = "Inspect header & payload of JSON Web Tokens without sending them anywhere.";
+          toolAction.value = "parse";
+          break;
+      }
+
+      setStatus("");
+      updateDetectionUI();
+    }
+
+    // Tool implementations
+    function runJSONTool(mode, text) {
+      const t = text.trim();
+      if (!t) return "";
+      let parsed;
+      try {
+        parsed = JSON.parse(t);
+      } catch (e) {
+        throw new Error("Invalid JSON: " + e.message);
+      }
+      if (mode === "minify") return JSON.stringify(parsed);
+      return JSON.stringify(parsed, null, 2);
+    }
+
+    function runBase64Tool(mode, text) {
+      if (!text) return "";
+      if (mode === "encode") {
+        return btoa(unescape(encodeURIComponent(text)));
+      }
+      // decode
+      try {
+        const decoded = atob(text.replace(/\s+/g, ""));
+        try {
+          return decodeURIComponent(escape(decoded));
+        } catch {
+          return decoded; // binary-ish
+        }
+      } catch (e) {
+        throw new Error("Invalid Base64: " + e.message);
+      }
+    }
+
+    function runURLTool(mode, text) {
+      if (!text) return "";
+      return mode === "encode" ? encodeURIComponent(text) : decodeURIComponent(text);
+    }
+
+    function runJWTTool(text) {
+      const t = text.trim();
+      if (!t) return "";
+      const parts = t.split(".");
+      if (parts.length !== 3) throw new Error("Invalid JWT: must contain header.payload.signature");
+      const [h, p] = parts;
+      function decodePart(part) {
+        // base64url -> base64
+        let s = part.replace(/-/g, "+").replace(/_/g, "/");
+        while (s.length % 4) s += "=";
+        const decoded = atob(s);
+        try {
+          return decodeURIComponent(escape(decoded));
+        } catch {
+          return decoded;
+        }
+      }
+      let headerJSON, payloadJSON;
+      try {
+        headerJSON = JSON.parse(decodePart(h));
+      } catch (e) {
+        throw new Error("Invalid JWT header: " + e.message);
+      }
+      try {
+        payloadJSON = JSON.parse(decodePart(p));
+      } catch (e) {
+        throw new Error("Invalid JWT payload: " + e.message);
+      }
+      jwtHeader.textContent = JSON.stringify(headerJSON, null, 2);
+      jwtPayload.textContent = JSON.stringify(payloadJSON, null, 2);
+      jwtPanel.classList.remove("hidden");
+      return JSON.stringify({ header: headerJSON, payload: payloadJSON }, null, 2);
+    }
+
+    function runCurrentTool() {
+      const text = inputEl.value;
+      const mode = toolAction.value;
+      if (!text.trim()) {
+        setOutput("");
+        setStatus("Paste something first.");
+        return;
+      }
+
+      let tool = currentTool;
+      if (currentTool === "smart" || mode === "auto") {
+        const det = autoDetect(text);
+        tool = det.type === "text" ? "json" : det.type; // default to JSON pretty for plain
+      }
+
+      try {
+        let result = "";
+        if (tool === "json") {
+          const jsonMode = mode === "minify" ? "minify" : "pretty";
+          result = runJSONTool(jsonMode, text);
+          setStatus(jsonMode === "minify" ? "JSON minified." : "JSON formatted.");
+        } else if (tool === "base64") {
+          const bMode = mode === "decode" ? "decode" : "encode";
+          result = runBase64Tool(bMode, text);
+          setStatus(bMode === "decode" ? "Base64 decoded." : "Base64 encoded.");
+        } else if (tool === "url") {
+          const uMode = mode === "decode" ? "decode" : "encode";
+          result = runURLTool(uMode, text);
+          setStatus(uMode === "decode" ? "URL decoded." : "URL encoded.");
+        } else if (tool === "jwt") {
+          result = runJWTTool(text);
+          setStatus("JWT decoded (not verified).");
+        }
+        setOutput(result);
+      } catch (e) {
+        setStatus(e.message || String(e), "error");
+      }
+    }
+
+    // Event wiring
+    document.querySelectorAll(".tool-tab").forEach(btn => {
+      btn.addEventListener("click", () => setTool(btn.dataset.tool));
+    });
+
+    inputEl.addEventListener("input", () => {
+      updateDetectionUI();
+    });
+
+    $("runTool").addEventListener("click", runCurrentTool);
+
+    inputEl.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+        e.preventDefault();
+        runCurrentTool();
+      }
+      // Basic tab support
+      if (e.key === "Tab") {
+        e.preventDefault();
+        const start = inputEl.selectionStart;
+        const end = inputEl.selectionEnd;
+        const value = inputEl.value;
+        inputEl.value = value.substring(0, start) + "  " + value.substring(end);
+        inputEl.selectionStart = inputEl.selectionEnd = start + 2;
+      }
+    });
+
+    $("clearInput").addEventListener("click", () => {
+      inputEl.value = "";
+      setOutput("");
+      jwtPanel.classList.add("hidden");
+      updateDetectionUI();
+    });
+
+    $("copyOutput").addEventListener("click", () => {
+      const text = outputEl.textContent || "";
+      if (!text) { setStatus("Nothing to copy."); return; }
+      copyToClipboard(text);
+      setStatus("Output copied to clipboard.");
+    });
+
+    $("downloadOutput").addEventListener("click", () => {
+      const text = outputEl.textContent || "";
+      if (!text) { setStatus("Nothing to download."); return; }
+      const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "debug-suite-output.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setStatus("Output downloaded.");
+    });
+
+    $("swapIO").addEventListener("click", () => {
+      const inVal = inputEl.value;
+      inputEl.value = outputEl.textContent || "";
+      setOutput(inVal);
+      updateDetectionUI();
+    });
+
+    $("fileInput").addEventListener("change", (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        inputEl.value = reader.result || "";
+        updateDetectionUI();
+      };
+      reader.readAsText(file);
+      e.target.value = "";
+    });
+
+    $("closeJwtPanel").addEventListener("click", () => {
+      jwtPanel.classList.add("hidden");
+    });
+
+    // Initial state
+    setTool("smart");
+    updateDetectionUI();
+  </script>
+</body>
+</html>
